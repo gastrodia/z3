@@ -88,9 +88,39 @@ extern "C" {
     MK_ARITH_PRED(Z3_mk_gt,  OP_GT);
     MK_ARITH_PRED(Z3_mk_le,  OP_LE);
     MK_ARITH_PRED(Z3_mk_ge,  OP_GE);
+
     MK_UNARY(Z3_mk_int2real, mk_c(c)->get_arith_fid(), OP_TO_REAL, SKIP);
     MK_UNARY(Z3_mk_real2int, mk_c(c)->get_arith_fid(), OP_TO_INT, SKIP);
     MK_UNARY(Z3_mk_is_int,   mk_c(c)->get_arith_fid(), OP_IS_INT, SKIP);
+
+    //MK_UNARY(Z3_mk_sin, mk_c(c)->get_arith_fid(), OP_TO_SIN, SKIP);
+    //MK_UNARY(Z3_mk_cos, mk_c(c)->get_arith_fid(), OP_TO_COS, SKIP);
+
+	Z3_ast Z3_API Z3_mk_sin(Z3_context c, Z3_ast n1) {
+		Z3_TRY;
+		LOG_Z3_mk_int_sort(c);
+		RESET_ERROR_CODE();
+		decl_kind k = OP_SIN;
+		expr * args[1] = { to_expr(n1)};
+		ast* a = mk_c(c)->m().mk_app(mk_c(c)->get_arith_fid(), k, 0, nullptr, 1, args);
+		mk_c(c)->save_ast_trail(a);
+		check_sorts(c, a);
+		RETURN_Z3(of_ast(a));
+		Z3_CATCH_RETURN(nullptr);
+	}
+
+	Z3_ast Z3_API Z3_mk_cos(Z3_context c, Z3_ast n1) {
+		Z3_TRY;
+		LOG_Z3_mk_int_sort(c);
+		RESET_ERROR_CODE();
+		decl_kind k = OP_COS;
+		expr * args[1] = { to_expr(n1) };
+		ast* a = mk_c(c)->m().mk_app(mk_c(c)->get_arith_fid(), k, 0, nullptr, 1, args);
+		mk_c(c)->save_ast_trail(a);
+		check_sorts(c, a);
+		RETURN_Z3(of_ast(a));
+		Z3_CATCH_RETURN(nullptr);
+	}
 
     Z3_ast Z3_API Z3_mk_sub(Z3_context c, unsigned num_args, Z3_ast const args[]) {
         Z3_TRY;

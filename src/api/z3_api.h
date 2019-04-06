@@ -1013,6 +1013,8 @@ typedef enum {
     Z3_OP_TO_INT,
     Z3_OP_IS_INT,
     Z3_OP_POWER,
+    Z3_OP_SIN,
+    Z3_OP_COS,
 
     // Arrays & Sets
     Z3_OP_STORE = 0x300,
@@ -2343,7 +2345,8 @@ extern "C" {
        def_API('Z3_mk_sub', AST, (_in(CONTEXT), _in(UINT), _in_array(1, AST)))
     */
     Z3_ast Z3_API Z3_mk_sub(Z3_context c, unsigned num_args, Z3_ast const args[]);
-
+    
+   
     /**
        \brief Create an AST node representing \ccode{- arg}.
 
@@ -2458,6 +2461,32 @@ extern "C" {
         def_API('Z3_mk_real2int', AST, (_in(CONTEXT), _in(AST)))
     */
     Z3_ast Z3_API Z3_mk_real2int(Z3_context c, Z3_ast t1);
+
+    /**
+       \brief Create an AST node representing \ccode{args[0] - ... - args[num_args - 1]}.
+
+       The array \c args must have \c num_args elements.
+       All arguments must have int or real sort.
+
+       \remark The number of arguments must be greater than zero.
+
+       def_API('Z3_mk_sin', AST, (_in(CONTEXT), _in(AST)))
+    */
+    Z3_ast Z3_API Z3_mk_sin(Z3_context c, Z3_ast t1);
+
+    /**
+       \brief Create an AST node representing \ccode{args[0] - ... - args[num_args - 1]}.
+
+       The array \c args must have \c num_args elements.
+       All arguments must have int or real sort.
+
+       \remark The number of arguments must be greater than zero.
+
+       def_API('Z3_mk_cos', AST, (_in(CONTEXT), _in(AST)))
+    */
+    Z3_ast Z3_API Z3_mk_cos(Z3_context c, Z3_ast t1);
+
+    
 
     /**
         \brief Check if a real number is an integer.

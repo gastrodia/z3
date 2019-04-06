@@ -2641,6 +2641,12 @@ def is_mod(a):
     """
     return is_app_of(a, Z3_OP_MOD)
 
+def is_sin(a):
+    return is_app_of(a,Z3_OP_SIN)
+
+def is_cos(a):
+    return is_app_of(a,Z3_OP_COS)
+
 def is_le(a):
     """Return `True` if `a` is an expression of the form b <= c.
 
@@ -3118,6 +3124,18 @@ def ToInt(a):
     ctx = a.ctx
     return ArithRef(Z3_mk_real2int(ctx.ref(), a.as_ast()), ctx)
 
+def Sin(a):
+    if __debug__:
+        _z3_assert(a.is_real(), "Z3 real expression expected.")
+    ctx = a.ctx
+    return ArithRef(Z3_mk_sin(ctx.ref(), a.as_ast()), ctx)
+
+def Cos(a):
+    if __debug__:
+        _z3_assert(a.is_real(), "Z3 real expression expected.")
+    ctx = a.ctx
+    return ArithRef(Z3_mk_cos(ctx.ref(), a.as_ast()), ctx)
+    
 def IsInt(a):
     """ Return the Z3 predicate IsInt(a).
 

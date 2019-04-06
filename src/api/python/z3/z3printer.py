@@ -44,6 +44,7 @@ _z3_op_to_str = {
     Z3_OP_SEQ_IN_RE : 'InRe', Z3_OP_SEQ_TO_RE : 'Re', 
     Z3_OP_RE_PLUS : 'Plus', Z3_OP_RE_STAR : 'Star', Z3_OP_RE_OPTION : 'Option', Z3_OP_RE_UNION : 'Union', Z3_OP_RE_RANGE : 'Range',
     Z3_OP_RE_INTERSECT : 'Intersect', Z3_OP_RE_COMPLEMENT : 'Complement', 
+    Z3_OP_SIN:'Sin', Z3_OP_COS:'Cos'
     
     }
 
@@ -68,7 +69,7 @@ _z3_precedence = {
     Z3_OP_BOR : 7,
     Z3_OP_LE : 8, Z3_OP_LT : 8, Z3_OP_GE : 8, Z3_OP_GT : 8, Z3_OP_EQ : 8, Z3_OP_SLEQ : 8, Z3_OP_SLT : 8, Z3_OP_SGEQ : 8, Z3_OP_SGT : 8,
     Z3_OP_IFF : 8,
-    
+    Z3_OP_SIN:8, Z3_OP_COS:8,
     Z3_OP_FPA_NEG : 1,
     Z3_OP_FPA_MUL : 2, Z3_OP_FPA_DIV : 2, Z3_OP_FPA_REM : 2, Z3_OP_FPA_FMA : 2,
     Z3_OP_FPA_ADD: 3, Z3_OP_FPA_SUB : 3,
